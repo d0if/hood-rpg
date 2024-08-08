@@ -34,9 +34,6 @@ func change_scene():
 			Global.game_first_loadin = false
 			Global.finish_changescenes(target_scene)
 			
-	
-
-poop
 
 func _on_chingy_enter_body_entered(body):
 	if body.has_method ("player"):
