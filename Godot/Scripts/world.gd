@@ -36,7 +36,7 @@ func change_scene():
 			
 	
 
-
+poop
 
 func _on_chingy_enter_body_entered(body):
 	if body.has_method ("player"):

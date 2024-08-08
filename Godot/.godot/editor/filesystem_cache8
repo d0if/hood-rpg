@@ -1,49 +1,49 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1723089832
-::res://Art/::1723087838
-icon.svg::CompressedTexture2D::5032872374730969758::1722657091::1722657925::1::::<><>::
-Road_test.png::CompressedTexture2D::60486968411412795::1722657842::1722657845::1::::<><>::
-::res://Art/buildings/::1722793332
-Apartment building.png::CompressedTexture2D::7025563642459723724::1722730597::1722730605::1::::<><>::
-Brown Building.png::CompressedTexture2D::8088639108467775095::1722741864::1722741864::1::::<><>::
-Chingy ding ding resturant.png::CompressedTexture2D::3563396511920325661::1722730597::1722730605::1::::<><>::
-gas station.png::CompressedTexture2D::3940387302492825325::1722737102::1722737102::1::::<><>::
-grey building.png::CompressedTexture2D::2560639328252962541::1722737106::1722737106::1::::<><>::
-Gun store.png::CompressedTexture2D::2312708593909816780::1722741864::1722741864::1::::<><>::
-Liquor Store.png::CompressedTexture2D::4994152835650808071::1722730597::1722730605::1::::<><>::
-MCBURGER.png::CompressedTexture2D::4167223402913311078::1722741864::1722741864::1::::<><>::
-Purple Building.png::CompressedTexture2D::1887139851707395785::1722741864::1722741864::1::::<><>::
-::res://Art/buildings/Fencing Border/::1722803784
-Fences.png::CompressedTexture2D::4848216103092596696::1722793351::1722793333::1::::<><>::
-::res://Art/Main player/::1722661196
-Sprite-0001 Still-sheet.png::CompressedTexture2D::6874682805374461781::1722661196::1722661196::1::::<><>::
-Sprite-0001 Still.png::CompressedTexture2D::1887922381356074148::1722658328::1722658328::1::::<><>::
-Sprite-0001 walking.png::CompressedTexture2D::8365171869456412921::1722657842::1722657842::1::::<><>::
-::res://Art/tilesets/::1723087850
-Ai roads.PNG::CompressedTexture2D::4321683846418450355::1722712857::1722712876::1::::<><>::
-custom ez road tiles.png::CompressedTexture2D::8096268018463403870::1722715615::1722715615::1::::<><>::
-DALL·E 2024-08-03 13.47.04 - A pixel art tileset for a top-down RPG called HOODrpg, depicting basic street elements suitable for use in Godot. The tileset includes straight roads,.png::CompressedTexture2D::8282793057599654262::1722714470::1722714471::1::::<><>::
-Road_test.png::CompressedTexture2D::4671093971499089771::1722712857::1722712878::1::::<><>::
-::res://Art/tilesets/chingy interior/::1723087850
-chingy interior.png::CompressedTexture2D::1935570467518512642::1723087825::1723087850::1::::<><>::
-::res://Art/tilesets/interior tilesets/::1723087850
-Apartment insisde tiles.png::CompressedTexture2D::317279947843504627::1722803771::1722803801::1::::<><>::
-apt interior tiles.png::CompressedTexture2D::3597135436210786634::1722807179::1722807179::1::::<><>::
-interior door.png::CompressedTexture2D::1194762851249578952::1722803771::1722803801::1::::<><>::
-::res://Art/tilesets/room tileset/::1722921760
-bed.png::CompressedTexture2D::9031065303747699676::1722921735::1722921760::1::::<><>::
-gooner desk.png::CompressedTexture2D::7221187923456310288::1722921735::1722921760::1::::<><>::
-room floor + walls.png::CompressedTexture2D::2307806856439216761::1722921735::1722921760::1::::<><>::
-::res://Scenes/::1723090107
-apartment_inside.tscn::PackedScene::2661173239814447797::1723090107::0::1::::<><>::res://Scripts/apartment_inside.gd<>uid://erxs34tx8dvf::::res://Art/tilesets/interior tilesets/Apartment insisde tiles.png<>uid://ra0tmpxb13n5::::res://Art/tilesets/interior tilesets/interior door.png<>uid://briqkbecqnlwk::::res://Art/tilesets/interior tilesets/apt interior tiles.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
-apt_room.tscn::PackedScene::8890346575417016026::1723090107::0::1::::<><>::res://Scripts/apt_room.gd<>uid://746ihp1h66px::::res://Art/tilesets/room tileset/room floor + walls.png<>uid://da4857bocboi7::::res://Art/tilesets/room tileset/gooner desk.png<>uid://d1wylc766nlsu::::res://Art/tilesets/room tileset/bed.png<>uid://briqkbecqnlwk::::res://Art/tilesets/interior tilesets/apt interior tiles.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
-Chingy.tscn::PackedScene::9156520934196757050::1723090232::0::1::::<><>::res://Scenes/Chingy.gd<>uid://2tuteuw14x0m::::res://Art/tilesets/chingy interior/chingy interior.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
-player.tscn::PackedScene::5961173419207433770::1723090106::0::1::::<><>::res://Scripts/Player.gd<>uid://15r2nq35g6ts::::res://Art/Main player/Sprite-0001 Still.png<>uid://c47fay0ev68f6::::res://Art/Main player/Sprite-0001 Still-sheet.png
-Chingy.gd::GDScript::-1::1723090213::0::1::::<>Node2D<>::
-world.tscn::PackedScene::4461012154794706282::1723090106::0::1::::<><>::res://Scripts/world.gd<>uid://dnl5l7g22fiag::::res://Art/tilesets/custom ez road tiles.png<>uid://b0mvtccdl2pu1::::res://Art/buildings/MCBURGER.png<>uid://c7diah2b0ecum::::res://Art/buildings/Apartment building.png<>uid://15e6g2borjc0::::res://Art/buildings/Purple Building.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn<>uid://bq1evcv3hya6p::::res://Art/buildings/Chingy ding ding resturant.png<>uid://dnigx7h3jcyqx::::res://Art/buildings/Brown Building.png<>uid://cdfg75qrvuyl8::::res://Art/buildings/Liquor Store.png<>uid://bwe0urjfqtnu0::::res://Art/buildings/gas station.png<>uid://bcqnmddm2gkiv::::res://Art/buildings/grey building.png<>uid://cbcrn78oaplqu::::res://Art/buildings/Fencing Border/Fences.png<>uid://77j8cncg2aem::::res://Art/buildings/Gun store.png
-::res://Scripts/::1723090106
-apartment_inside.gd::GDScript::-1::1722926487::0::1::::<>Node2D<>::
-apt_room.gd::GDScript::-1::1722926487::0::1::::<>Node2D<>::
-global.gd::GDScript::-1::1722926611::0::1::::<>Node<>::
-Player.gd::GDScript::-1::1722831190::0::1::::<>CharacterBody2D<>::
-world.gd::GDScript::-1::1723090106::0::1::::<>Node2D<>::
+::res://::1723099828
+::res://Art/::1723099695
+icon.svg::CompressedTexture2D::5032872374730969758::1723099695::1723099829::1::::<><>::
+Road_test.png::CompressedTexture2D::60486968411412795::1723099695::1723099695::1::::<><>::
+::res://Art/buildings/::1723099695
+Apartment building.png::CompressedTexture2D::7025563642459723724::1723099695::1723099695::1::::<><>::
+Brown Building.png::CompressedTexture2D::8088639108467775095::1723099695::1723099695::1::::<><>::
+Chingy ding ding resturant.png::CompressedTexture2D::3563396511920325661::1723099695::1723099695::1::::<><>::
+gas station.png::CompressedTexture2D::3940387302492825325::1723099695::1723099695::1::::<><>::
+grey building.png::CompressedTexture2D::2560639328252962541::1723099695::1723099695::1::::<><>::
+Gun store.png::CompressedTexture2D::2312708593909816780::1723099695::1723099695::1::::<><>::
+Liquor Store.png::CompressedTexture2D::4994152835650808071::1723099695::1723099695::1::::<><>::
+MCBURGER.png::CompressedTexture2D::4167223402913311078::1723099695::1723099695::1::::<><>::
+Purple Building.png::CompressedTexture2D::1887139851707395785::1723099695::1723099695::1::::<><>::
+::res://Art/buildings/Fencing Border/::1723099695
+Fences.png::CompressedTexture2D::4848216103092596696::1723099695::1723099695::1::::<><>::
+::res://Art/Main player/::1723099695
+Sprite-0001 Still-sheet.png::CompressedTexture2D::6874682805374461781::1723099695::1723099695::1::::<><>::
+Sprite-0001 Still.png::CompressedTexture2D::1887922381356074148::1723099695::1723099695::1::::<><>::
+Sprite-0001 walking.png::CompressedTexture2D::8365171869456412921::1723099695::1723099695::1::::<><>::
+::res://Art/tilesets/::1723099695
+Ai roads.PNG::CompressedTexture2D::4321683846418450355::1723099695::1723099695::1::::<><>::
+custom ez road tiles.png::CompressedTexture2D::8096268018463403870::1723099695::1723099695::1::::<><>::
+DALL·E 2024-08-03 13.47.04 - A pixel art tileset for a top-down RPG called HOODrpg, depicting basic street elements suitable for use in Godot. The tileset includes straight roads,.png::CompressedTexture2D::8282793057599654262::1723099695::1723099830::1::::<><>::
+Road_test.png::CompressedTexture2D::4671093971499089771::1723099695::1723099695::1::::<><>::
+::res://Art/tilesets/chingy interior/::1723099695
+chingy interior.png::CompressedTexture2D::1935570467518512642::1723099695::1723099695::1::::<><>::
+::res://Art/tilesets/interior tilesets/::1723099695
+Apartment insisde tiles.png::CompressedTexture2D::317279947843504627::1723099695::1723099695::1::::<><>::
+apt interior tiles.png::CompressedTexture2D::3597135436210786634::1723099695::1723099695::1::::<><>::
+interior door.png::CompressedTexture2D::1194762851249578952::1723099695::1723099695::1::::<><>::
+::res://Art/tilesets/room tileset/::1723099695
+bed.png::CompressedTexture2D::9031065303747699676::1723099695::1723099695::1::::<><>::
+gooner desk.png::CompressedTexture2D::7221187923456310288::1723099695::1723099695::1::::<><>::
+room floor + walls.png::CompressedTexture2D::2307806856439216761::1723099695::1723099695::1::::<><>::
+::res://Scenes/::1723099695
+apartment_inside.tscn::PackedScene::2661173239814447797::1723099695::0::1::::<><>::res://Scripts/apartment_inside.gd<>uid://erxs34tx8dvf::::res://Art/tilesets/interior tilesets/Apartment insisde tiles.png<>uid://ra0tmpxb13n5::::res://Art/tilesets/interior tilesets/interior door.png<>uid://briqkbecqnlwk::::res://Art/tilesets/interior tilesets/apt interior tiles.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
+apt_room.tscn::PackedScene::8890346575417016026::1723099695::0::1::::<><>::res://Scripts/apt_room.gd<>uid://746ihp1h66px::::res://Art/tilesets/room tileset/room floor + walls.png<>uid://da4857bocboi7::::res://Art/tilesets/room tileset/gooner desk.png<>uid://d1wylc766nlsu::::res://Art/tilesets/room tileset/bed.png<>uid://briqkbecqnlwk::::res://Art/tilesets/interior tilesets/apt interior tiles.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
+Chingy.tscn::PackedScene::9156520934196757050::1723099695::0::1::::<><>::res://Scripts/Chingy.gd<>uid://2tuteuw14x0m::::res://Art/tilesets/chingy interior/chingy interior.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn
+player.tscn::PackedScene::5961173419207433770::1723099695::0::1::::<><>::res://Scripts/Player.gd<>uid://15r2nq35g6ts::::res://Art/Main player/Sprite-0001 Still.png<>uid://c47fay0ev68f6::::res://Art/Main player/Sprite-0001 Still-sheet.png
+world.tscn::PackedScene::4461012154794706282::1723099695::0::1::::<><>::res://Scripts/world.gd<>uid://dnl5l7g22fiag::::res://Art/tilesets/custom ez road tiles.png<>uid://b0mvtccdl2pu1::::res://Art/buildings/MCBURGER.png<>uid://c7diah2b0ecum::::res://Art/buildings/Apartment building.png<>uid://15e6g2borjc0::::res://Art/buildings/Purple Building.png<>uid://cq6vwjq76mc7s::::res://Scenes/player.tscn<>uid://bq1evcv3hya6p::::res://Art/buildings/Chingy ding ding resturant.png<>uid://dnigx7h3jcyqx::::res://Art/buildings/Brown Building.png<>uid://cdfg75qrvuyl8::::res://Art/buildings/Liquor Store.png<>uid://bwe0urjfqtnu0::::res://Art/buildings/gas station.png<>uid://bcqnmddm2gkiv::::res://Art/buildings/grey building.png<>uid://cbcrn78oaplqu::::res://Art/buildings/Fencing Border/Fences.png<>uid://77j8cncg2aem::::res://Art/buildings/Gun store.png
+::res://Scripts/::1723099695
+apartment_inside.gd::GDScript::-1::1723099695::0::1::::<>Node2D<>::
+apt_room.gd::GDScript::-1::1723099695::0::1::::<>Node2D<>::
+Chingy.gd::GDScript::-1::1723099695::0::1::::<>Node2D<>::
+global.gd::GDScript::-1::1723099695::0::1::::<>Node<>::
+Player.gd::GDScript::-1::1723099695::0::1::::<>CharacterBody2D<>::
+world.gd::GDScript::-1::1723099695::0::1::::<>Node2D<>::

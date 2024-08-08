@@ -1,10 +1,2 @@
 res://Scenes/world.tscn
-res://Scenes/player.tscn
-res://Scenes/apartment_inside.tscn
-res://Scenes/apt_room.tscn
-res://Scenes/Chingy.tscn
 res://Scripts/world.gd
-res://Scripts/Chingy.gd
-res://Datastore.gd
-res://Scripts/global.gd
-res://Scripts/Player.gd
