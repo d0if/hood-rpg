@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://cq6vwjq76mc7s"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_htp4k"]
+[ext_resource type="Texture2D" uid="uid://15r2nq35g6ts" path="res://Art/Main player/Sprite-0001 Still.png" id="2_imvg8"]
+[ext_resource type="Texture2D" uid="uid://c47fay0ev68f6" path="res://Art/Main player/Sprite-0001 Still-sheet.png" id="3_l1q4l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8atas"]
+size = Vector2(10, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43sma"]
+atlas = ExtResource("3_l1q4l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqb87"]
+atlas = ExtResource("3_l1q4l")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sovx4"]
+atlas = ExtResource("3_l1q4l")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0cow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_imvg8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43sma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqb87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sovx4")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_htp4k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8atas")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_t0cow")
+animation = &"walking"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+limit_left = 9
+limit_top = 20
+limit_right = 1209
+limit_bottom = 660
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="NEW_apt_cam" type="Camera2D" parent="."]
+position = Vector2(-3, 6.00001)
+scale = Vector2(65.8073, -77.1378)
+zoom = Vector2(1.5, 1.5)
