@@ -34,6 +34,8 @@ func change_scene():
 			Global.game_first_loadin = false
 			Global.finish_changescenes(target_scene)
 			
+			
+
 
 func _on_chingy_enter_body_entered(body):
 	if body.has_method ("player"):
@@ -43,6 +45,7 @@ func _on_chingy_enter_body_entered(body):
 
 
 func _on_chingy_enter_body_exited(body):
+	print("TEST AGAIN!!")
 	if body.has_method("player"):
 		print ("pee")
 		Global.transition_scene = false
