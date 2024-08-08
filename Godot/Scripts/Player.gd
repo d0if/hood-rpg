@@ -84,5 +84,6 @@ func _process(delta):
 	Global.pos_rem()
 	
 func _ready():
-	position = Global.pos_history[Global.current_scene]
+	if Global.current_scene in Global.pos_history:
+		position = Global.pos_history[Global.current_scene]
 
