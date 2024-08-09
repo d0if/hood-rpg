@@ -15,7 +15,7 @@ var pos_history = {"world":Vector2(player_start_posx, player_start_posy)}
 func pos_rem():
 	pos_history[current_scene] = player_pos
 
-
+#hi josh, earth to josh, hello? anybody home?
 
 var game_first_loadin = true
 
