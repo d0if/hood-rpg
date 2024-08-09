@@ -9,7 +9,7 @@ func player():
 
 func _physics_process(delta):
 	player_movement(delta)
-	current_camera()
+	#current_camera()
 
 func player_movement(delta):
 	
