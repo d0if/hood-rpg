@@ -4,7 +4,6 @@ var target_scene = ""
 
 func _process(delta):
 	change_scenes()
-	print (Global.current_scene)
 
 
 func _on_inside_apt_exit_body_entered(body):

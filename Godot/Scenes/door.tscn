@@ -1,3 +1,23 @@
-[gd_scene format=3 uid="uid://bbsav1rsm67u2"]
+[gd_scene load_steps=3 format=3 uid="uid://bbsav1rsm67u2"]
 
-[node name="DOOR" type="Node2D"]
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_fyqbq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
+size = Vector2(94, 95)
+
+[node name="DOOR-COPYPASTE" type="Node2D" groups=["doors"]]
+script = ExtResource("1_fyqbq")
+metadata/Pairing = "abc"
+metadata/Lock = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="DOOR COLLISION" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(67, 58.5)
+shape = SubResource("RectangleShape2D_uo0oh")
+
+[node name="EXIT POSITION" type="Marker2D" parent="."]
+position = Vector2(28, 0)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

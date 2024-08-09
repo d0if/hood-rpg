@@ -11,7 +11,6 @@ func _ready():
 
 func _process(delta):
 	change_scene()
-	print (Global.current_scene)
 
 
 func _on_apartment_transition_point_body_entered(body):
