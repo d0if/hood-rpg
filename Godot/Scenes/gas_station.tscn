@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://t0sjy0mtahfb"]
+[gd_scene load_steps=10 format=3 uid="uid://887bl3hit44y"]
 
 [ext_resource type="Texture2D" uid="uid://co071ocggdlr3" path="res://Art/tilesets/gas station tiles/gas station.png" id="1_0vbts"]
 [ext_resource type="Texture2D" uid="uid://b6sscx3ce317a" path="res://Art/tilesets/gas station tiles/white wall.png" id="2_5g5nk"]
+[ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="3_pfq6y"]
+[ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="4_ay11h"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="5_dtmnv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_306n1"]
 texture = ExtResource("1_0vbts")
@@ -27,6 +30,9 @@ texture = ExtResource("2_5g5nk")
 sources/0 = SubResource("TileSetAtlasSource_306n1")
 sources/1 = SubResource("TileSetAtlasSource_eh1fl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj186"]
+size = Vector2(127, 38)
+
 [node name="gas station" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -38,3 +44,30 @@ layer_1/name = "walls"
 layer_1/tile_data = PackedInt32Array(262170, 1048576, 0, 262174, 1048576, 0, 262178, 1048576, 0, 262182, 1048576, 0, 262186, 1048576, 0, 524334, 1, 0, 786478, 1, 0, 1048622, 1, 0, 1310766, 1, 0, 1572906, 1, 0, 1572902, 1, 0, 1572898, 1, 0, 1835038, 1, 0, 1835034, 1, 0, 1572886, 1, 0, 1310742, 1, 0, 1048598, 1, 0, 786454, 1, 0, 524310, 1, 0, 262166, 1, 0, 262190, 1, 0, 1572910, 1, 0, 1835042, 1, 0, 1835030, 1, 0)
 layer_2/name = "objects"
 layer_2/tile_data = PackedInt32Array(1048606, 262144, 0, 1048610, 262144, 0, 1048618, 262144, 0, 524330, 786432, 0, 524326, 524288, 0, 524322, 786432, 0, 327722, 1310720, 0, 327718, 1310720, 0, 327714, 1310720, 0, 393246, 262144, 0)
+
+[node name="gas-station-door" parent="." instance=ExtResource("3_pfq6y")]
+editor_description = "HOW TO SETUP DOOR:
+0. scene needs to have ONE \"base_world_scene\" node. hit chain button in scene (instantiate child scene), add \"base scenes/world scene\". make sure its a child of the scene (not some other randomnode), then right click it and hit \"make local\"
+1: in desired scene hit chain button (instantiate child scene). add door.tscn
+2: right click door, hit \"editable children\"
+3: go to DOOR COLLISION (NOT DOOR-COPYPASTE) ----> inspector (right side) -----> hit screwdriver wrench button and click \"make subresources unique\". should only try to make somehting called  \"shape\" unique.
+4: move door hitbox & exit position
+5: in inspector, go to metadata dropdown. \"Target\" will select the scene that the door takes you to & \"Pairing\" needs to match between in/out doors (can be anythign)"
+metadata/Pairing = "gas"
+metadata/Target = "world"
+
+[node name="DOOR COLLISION" parent="gas-station-door/Area2D" index="0"]
+position = Vector2(455.5, 403)
+shape = SubResource("RectangleShape2D_mj186")
+
+[node name="EXIT POSITION" parent="gas-station-door" index="1"]
+position = Vector2(457, 344)
+
+[node name="Player" parent="." instance=ExtResource("4_ay11h")]
+position = Vector2(613, 303)
+scale = Vector2(2, 2)
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("5_dtmnv")
+
+[editable path="gas-station-door"]
