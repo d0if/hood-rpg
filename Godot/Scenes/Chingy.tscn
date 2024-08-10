@@ -1,8 +1,47 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3pqtdw6gxw0y"]
+[gd_scene load_steps=10 format=3 uid="uid://d3pqtdw6gxw0y"]
 
-[ext_resource type="Script" path="res://Scripts/Chingy.gd" id="1_4mi1k"]
 [ext_resource type="Texture2D" uid="uid://2tuteuw14x0m" path="res://Art/tilesets/chingy interior/chingy interior.png" id="1_674ju"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="2_ylldb"]
+[ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="4_dti45"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="5_yow06"]
+
+[sub_resource type="GDScript" id="GDScript_v3xid"]
+script/source = "extends Node2D
+
+#var target_scene = \"\"
+
+
+#func _ready():
+	#Global.current_scene = \"Chingy\"
+	#if Global.paired_door != \"\":
+		#print(\"looking for paired door\")
+		#print_tree_pretty()
+		#var door = get_tree().get_nodes_in_group(\"doors\")
+		#if door[0]:
+			#print(\"paired door found\")
+			#door[0].move_player_to_exit()
+			#Global.paired_door = \"\"
+
+
+#func _process(delta):
+	#change_scenes()
+
+
+#func _on_chingy_exit_body_entered(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = true
+		#target_scene = \"world\"
+
+
+#func _on_chingy_exit_body_exited(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = false
+
+#func change_scenes():
+	#if Global.transition_scene == true:
+		#if Global.current_scene == \"Chingy\":
+			#Global.finish_changescenes(target_scene)
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fyf4e"]
 texture = ExtResource("1_674ju")
@@ -43,8 +82,11 @@ sources/0 = SubResource("TileSetAtlasSource_fyf4e")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rld3i"]
 size = Vector2(135, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u8oc"]
+size = Vector2(128, 20)
+
 [node name="Chingy" type="Node2D"]
-script = ExtResource("1_4mi1k")
+script = SubResource("GDScript_v3xid")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_1n3on")
@@ -61,10 +103,34 @@ position = Vector2(500, 365)
 scale = Vector2(2.5, 2.5)
 
 [node name="Chingy Exit" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chingy Exit"]
 position = Vector2(504.5, 416)
 shape = SubResource("RectangleShape2D_rld3i")
 
+[node name="chingy-door-test" parent="." instance=ExtResource("4_dti45")]
+editor_description = "HOW TO SETUP DOOR:
+1: in desired scene hit chain button (instantiate child scene). add door
+2: go to inspector (right side) hit screwdriver wrench button and click \"make subresources unique\"
+3: move door hitbox & exit position
+4: in inspector, go to metadata dropdown. \"Target\" will select the scene that the door takes you to & \"Pairing\" needs to match between in/out doors (can be anythign)"
+metadata/Pairing = "Chingy"
+metadata/Target = "world"
+
+[node name="DOOR COLLISION" parent="chingy-door-test/Area2D" index="0"]
+position = Vector2(503, 412)
+shape = SubResource("RectangleShape2D_0u8oc")
+
+[node name="EXIT POSITION" parent="chingy-door-test" index="1"]
+position = Vector2(502, 368)
+
+[node name="Node" type="Node" parent="."]
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("5_yow06")
+
 [connection signal="body_entered" from="Chingy Exit" to="." method="_on_chingy_exit_body_entered"]
 [connection signal="body_exited" from="Chingy Exit" to="." method="_on_chingy_exit_body_exited"]
+
+[editable path="chingy-door-test"]

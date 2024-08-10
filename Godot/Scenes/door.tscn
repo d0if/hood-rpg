@@ -3,21 +3,26 @@
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_fyqbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
-size = Vector2(94, 95)
 
 [node name="DOOR-COPYPASTE" type="Node2D" groups=["doors"]]
+editor_description = "HOW TO SETUP DOOR:
+1: in desired scene hit chain button (instantiate child scene). add door
+2: go to door inspector (right side) hit screwdriver wrench button and click \"make subresources unique\"
+3: move door hitbox & exit position
+4: in inspector, go to metadata dropdown. \"Target\" will select the scene that the door takes you to & \"Pairing\" needs to match between in/out doors (can be anythign)"
 script = ExtResource("1_fyqbq")
 metadata/Pairing = "abc"
 metadata/Lock = false
+metadata/Target = ""
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="DOOR COLLISION" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(67, 58.5)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_uo0oh")
 
 [node name="EXIT POSITION" type="Marker2D" parent="."]
-position = Vector2(28, 0)
+position = Vector2(0, 93)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,11 +1,64 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd6detoymb7or"]
+[gd_scene load_steps=16 format=3 uid="uid://bd6detoymb7or"]
 
-[ext_resource type="Script" path="res://Scripts/apartment_inside.gd" id="1_corlp"]
 [ext_resource type="Texture2D" uid="uid://erxs34tx8dvf" path="res://Art/tilesets/interior tilesets/Apartment insisde tiles.png" id="1_iu486"]
 [ext_resource type="Texture2D" uid="uid://ra0tmpxb13n5" path="res://Art/tilesets/interior tilesets/interior door.png" id="2_mevnc"]
 [ext_resource type="Texture2D" uid="uid://briqkbecqnlwk" path="res://Art/tilesets/interior tilesets/apt interior tiles.png" id="3_ih57w"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="4_riykf"]
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="6_yudjm"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="7_vjrv2"]
+
+[sub_resource type="GDScript" id="GDScript_r8ehx"]
+script/source = "extends Node2D
+
+#var target_scene = \"\"
+
+#func _process(delta):
+	##change_scenes()
+	#pass
+
+
+#func _on_inside_apt_exit_body_entered(body):
+	#if body.has_method(\"player\"):
+		##print (\"fart\")
+		#Global.transition_scene = true
+		#target_scene = \"world\"
+
+#func _on_inside_apt_exit_body_exited(body):
+	#if body.has_method(\"player\"):
+		##print (\"shit\")
+		#Global.transition_scene = false
+		
+
+#func change_scenes():
+	#if Global.transition_scene == true:
+		##print (\"poop\")
+		#if Global.current_scene == \"apartment_inside\":
+			#Global.finish_changescenes(target_scene)
+
+#func _on_ready():
+	#Global.current_scene = \"apartment_inside\"
+	#if Global.paired_door != \"\":
+		#print(\"looking for paired door\")
+		#print_tree_pretty()
+		#var door = get_tree().get_nodes_in_group(\"doors\")
+		#if door[0]:
+			#print(\"paired door found\")
+			#door[0].move_player_to_exit()
+			#Global.paired_door = \"\"
+
+#func _on_apt_room_enter_body_entered(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = true
+		#target_scene = \"apt_room\"
+	
+
+
+#func _on_apt_room_enter_body_exited(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = false
+		
+	
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3xes"]
 texture = ExtResource("1_iu486")
@@ -128,11 +181,14 @@ size = Vector2(130, 55.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jd1b"]
 size = Vector2(64, 54)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_33eqt"]
-size = Vector2(63, 115)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pfu0"]
+size = Vector2(126, 41.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25x7x"]
+size = Vector2(74, 91.5)
 
 [node name="Apartment_inside" type="Node2D"]
-script = ExtResource("1_corlp")
+script = SubResource("GDScript_r8ehx")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_l1mm3")
@@ -152,27 +208,43 @@ position = Vector2(500, 313)
 scale = Vector2(4, 4)
 
 [node name="inside_apt_exit" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="inside_apt_exit"]
 position = Vector2(502, 446.75)
 shape = SubResource("RectangleShape2D_ne3go")
 
 [node name="apt_room_enter" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="apt_room_enter"]
 position = Vector2(728, 115)
 shape = SubResource("RectangleShape2D_4jd1b")
 
-[node name="DOOR-TEST" parent="." instance=ExtResource("6_yudjm")]
-position = Vector2(277, 272)
-metadata/Pairing = "def"
+[node name="Apt-out-door-test" parent="." instance=ExtResource("6_yudjm")]
+metadata/Pairing = "apt0"
+metadata/Target = "world"
 
-[node name="DOOR COLLISION" parent="DOOR-TEST/Area2D" index="0"]
-position = Vector2(6, 6)
-shape = SubResource("RectangleShape2D_33eqt")
+[node name="DOOR COLLISION" parent="Apt-out-door-test/Area2D" index="0"]
+position = Vector2(504, 450.25)
+shape = SubResource("RectangleShape2D_0pfu0")
 
-[node name="EXIT POSITION" parent="DOOR-TEST" index="1"]
-position = Vector2(72, 2)
+[node name="EXIT POSITION" parent="Apt-out-door-test" index="1"]
+position = Vector2(506, 345)
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("7_vjrv2")
+
+[node name="Apt-door-test" parent="." instance=ExtResource("6_yudjm")]
+metadata/Pairing = "apt1"
+metadata/Target = "apt_room"
+
+[node name="DOOR COLLISION" parent="Apt-door-test/Area2D" index="0"]
+position = Vector2(729, 131.25)
+shape = SubResource("RectangleShape2D_25x7x")
+
+[node name="EXIT POSITION" parent="Apt-door-test" index="1"]
+position = Vector2(734, 257)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="inside_apt_exit" to="." method="_on_inside_apt_exit_body_entered"]
@@ -180,4 +252,5 @@ position = Vector2(72, 2)
 [connection signal="body_entered" from="apt_room_enter" to="." method="_on_apt_room_enter_body_entered"]
 [connection signal="body_exited" from="apt_room_enter" to="." method="_on_apt_room_enter_body_exited"]
 
-[editable path="DOOR-TEST"]
+[editable path="Apt-out-door-test"]
+[editable path="Apt-door-test"]

@@ -1,6 +1,5 @@
-[gd_scene load_steps=28 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=32 format=3 uid="uid://b4s7horcpgaf7"]
 
-[ext_resource type="Script" path="res://Scripts/world.gd" id="1_hv840"]
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
 [ext_resource type="Texture2D" uid="uid://b0mvtccdl2pu1" path="res://Art/buildings/MCBURGER.png" id="3_dsa5p"]
 [ext_resource type="Texture2D" uid="uid://c7diah2b0ecum" path="res://Art/buildings/Apartment building.png" id="4_18veh"]
@@ -13,6 +12,56 @@
 [ext_resource type="Texture2D" uid="uid://bcqnmddm2gkiv" path="res://Art/buildings/grey building.png" id="8_we15j"]
 [ext_resource type="Texture2D" uid="uid://cbcrn78oaplqu" path="res://Art/buildings/Fencing Border/Fences.png" id="11_bb1ip"]
 [ext_resource type="Texture2D" uid="uid://77j8cncg2aem" path="res://Art/buildings/Gun store.png" id="12_trkw0"]
+[ext_resource type="Script" path="res://Scripts/door.gd" id="14_opu1e"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="15_qmwaj"]
+
+[sub_resource type="GDScript" id="GDScript_fx62c"]
+script/source = "extends Node2D
+
+#var target_scene = \"\"
+
+
+func _ready():
+	#if Global.game_first_loadin == true:
+	#$Player.position.x = Global.player_start_posx
+	#$Player.position.y = Global.player_start_posy
+	pass
+
+
+#func _process(delta):
+	#change_scene()
+
+
+#func _on_apartment_transition_point_body_entered(body):
+	#if body.has_method (\"player\"):
+		#Global.transition_scene = true
+		#target_scene = \"apartment_inside\"
+
+
+#func _on_apartment_transition_point_body_exited(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = false
+		
+
+#func change_scene():
+	#if Global.transition_scene == true:
+		#if Global.current_scene == \"world\":
+			##Global.game_first_loadin = false
+			#Global.finish_changescenes(target_scene)
+			
+			
+
+
+#func _on_chingy_enter_body_entered(body):
+	#if body.has_method (\"player\"):
+		#Global.transition_scene = true
+		#target_scene = \"Chingy\"
+
+
+#func _on_chingy_enter_body_exited(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = false
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dscbt"]
 texture = ExtResource("2_kmgia")
@@ -141,8 +190,14 @@ size = Vector2(30, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ictp"]
 size = Vector2(24, 27)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u8w6m"]
+size = Vector2(27, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ivmw"]
+size = Vector2(23, 19)
+
 [node name="world" type="Node2D"]
-script = ExtResource("1_hv840")
+script = SubResource("GDScript_fx62c")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(1, 12)
@@ -161,18 +216,58 @@ layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 6554
 position = Vector2(212, 111)
 
 [node name="Apartment_transition_point" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apartment_transition_point"]
 position = Vector2(118, 63)
 shape = SubResource("RectangleShape2D_3nr5l")
 
 [node name="Chingy_enter" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chingy_enter"]
 position = Vector2(153, 246.5)
 shape = SubResource("RectangleShape2D_0ictp")
 
+[node name="Test-apt-door" type="Node2D" parent="." groups=["doors"]]
+position = Vector2(116, 65)
+script = ExtResource("14_opu1e")
+metadata/Pairing = "apt0"
+metadata/Lock = false
+metadata/Target = "apartment_inside"
+
+[node name="Area2D" type="Area2D" parent="Test-apt-door"]
+
+[node name="DOOR COLLISION" type="CollisionShape2D" parent="Test-apt-door/Area2D"]
+position = Vector2(1.5, -8.5)
+shape = SubResource("RectangleShape2D_u8w6m")
+
+[node name="EXIT POSITION" type="Marker2D" parent="Test-apt-door"]
+position = Vector2(1, 22)
+
+[node name="Test-chingy-door" type="Node2D" parent="." groups=["doors"]]
+script = ExtResource("14_opu1e")
+metadata/Pairing = "Chingy"
+metadata/Lock = false
+metadata/Target = "Chingy"
+
+[node name="Area2D" type="Area2D" parent="Test-chingy-door"]
+
+[node name="DOOR COLLISION" type="CollisionShape2D" parent="Test-chingy-door/Area2D"]
+position = Vector2(153.5, 242.5)
+shape = SubResource("RectangleShape2D_3ivmw")
+
+[node name="EXIT POSITION" type="Marker2D" parent="Test-chingy-door"]
+position = Vector2(153, 278)
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("15_qmwaj")
+
 [connection signal="body_entered" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_entered"]
 [connection signal="body_exited" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_exited"]
 [connection signal="body_entered" from="Chingy_enter" to="." method="_on_chingy_enter_body_entered"]
 [connection signal="body_exited" from="Chingy_enter" to="." method="_on_chingy_enter_body_exited"]
+[connection signal="body_entered" from="Test-apt-door/Area2D" to="Test-apt-door" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Test-apt-door/Area2D" to="Test-apt-door" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="Test-chingy-door/Area2D" to="Test-chingy-door" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Test-chingy-door/Area2D" to="Test-chingy-door" method="_on_area_2d_body_exited"]

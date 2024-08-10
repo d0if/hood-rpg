@@ -79,11 +79,12 @@ func current_camera():
 		$Camera2D.enabled = false
 		$NEW_apt_cam.enabled = true
 
-func _process(delta):
-	Global.player_pos = position
-	Global.pos_rem()
+#func _process(delta):
+	#Global.player_pos = position
+	#Global.pos_rem()
 	
 func _ready():
-	if Global.current_scene in Global.pos_history:
-		position = Global.pos_history[Global.current_scene]
+	#if Global.current_scene in Global.pos_history:
+		#position = Global.pos_history[Global.current_scene]
+	pass
 

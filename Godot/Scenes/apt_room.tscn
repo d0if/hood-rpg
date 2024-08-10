@@ -1,11 +1,44 @@
-[gd_scene load_steps=13 format=3 uid="uid://dywsyd3peqxoc"]
+[gd_scene load_steps=16 format=3 uid="uid://dywsyd3peqxoc"]
 
-[ext_resource type="Script" path="res://Scripts/apt_room.gd" id="1_a7ccd"]
 [ext_resource type="Texture2D" uid="uid://746ihp1h66px" path="res://Art/tilesets/room tileset/room floor + walls.png" id="2_kqru2"]
 [ext_resource type="Texture2D" uid="uid://da4857bocboi7" path="res://Art/tilesets/room tileset/gooner desk.png" id="3_6diej"]
 [ext_resource type="Texture2D" uid="uid://d1wylc766nlsu" path="res://Art/tilesets/room tileset/bed.png" id="4_mnkg7"]
 [ext_resource type="Texture2D" uid="uid://briqkbecqnlwk" path="res://Art/tilesets/interior tilesets/apt interior tiles.png" id="5_5a5r5"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="6_hk56f"]
+[ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="7_wfu74"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="8_tb1qe"]
+
+[sub_resource type="GDScript" id="GDScript_pin7v"]
+script/source = "extends Node2D
+
+#var target_scene = \"\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	#print (Global.current_scene + \"retard\")
+	pass
+
+
+
+#func _process(delta):
+	#change_scenes()
+
+
+#func _on_apt_room_exit_body_entered(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = true
+		#target_scene = \"apartment_inside\"
+
+
+#func _on_apt_room_exit_body_exited(body):
+	#if body.has_method(\"player\"):
+		#Global.transition_scene = false
+
+#func change_scenes():
+	#if Global.transition_scene == true:
+		#if Global.current_scene == \"apt_room\":
+			#Global.finish_changescenes(target_scene)
+"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ewgpn"]
 texture = ExtResource("2_kqru2")
@@ -55,8 +88,11 @@ sources/3 = SubResource("TileSetAtlasSource_rwi5f")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eidw"]
 size = Vector2(68, 35)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmxla"]
+size = Vector2(77, 32.5)
+
 [node name="apt_room" type="Node2D"]
-script = ExtResource("1_a7ccd")
+script = SubResource("GDScript_pin7v")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_16xmb")
@@ -75,10 +111,27 @@ position = Vector2(421, 267)
 scale = Vector2(3, 3)
 
 [node name="apt_room_exit" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="apt_room_exit"]
 position = Vector2(425, 343.5)
 shape = SubResource("RectangleShape2D_6eidw")
 
+[node name="room-door-test" parent="." instance=ExtResource("7_wfu74")]
+metadata/Pairing = "apt1"
+metadata/Target = "apartment_inside"
+
+[node name="DOOR COLLISION" parent="room-door-test/Area2D" index="0"]
+position = Vector2(425, 345.25)
+shape = SubResource("RectangleShape2D_vmxla")
+
+[node name="EXIT POSITION" parent="room-door-test" index="1"]
+position = Vector2(426, 286)
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("8_tb1qe")
+
 [connection signal="body_entered" from="apt_room_exit" to="." method="_on_apt_room_exit_body_entered"]
 [connection signal="body_exited" from="apt_room_exit" to="." method="_on_apt_room_exit_body_exited"]
+
+[editable path="room-door-test"]
