@@ -27,3 +27,26 @@ func finish_changescenes(new_scene):
 	current_scene = new_scene
 	get_tree().change_scene_to_file("res://Scenes/" + new_scene + ".tscn")
 
+func split_vector_into_eight_directions(input_vector):
+	var output_string
+	var walk_angle = rad_to_deg(input_vector.angle())
+	if (-22.5) < walk_angle && walk_angle <= (22.5):
+		output_string = "right"
+	elif (22.5) < walk_angle && walk_angle <= (67.5):
+		output_string = "up_right"
+	elif (67.5) < walk_angle && walk_angle <= (112.5):
+		output_string = "up"
+	elif (112.5) < walk_angle && walk_angle <= (157.5):
+		output_string = "up_left"
+	elif (157.5) < walk_angle && walk_angle <= (180):
+		output_string = "left"
+	elif (-180) <= walk_angle && walk_angle <= (-157.5):
+		output_string = "left" #there are two lefts because the angle flips sign from 180 to -180
+	elif (-157.5) < walk_angle && walk_angle <= (-112.5):
+		output_string = "down_left"
+	elif (-112.5) < walk_angle && walk_angle <= (-67.5):
+		output_string = "down"
+	elif (-67.5) < walk_angle && walk_angle <= (-22.5):
+		output_string = "down_right"
+	
+	return output_string
