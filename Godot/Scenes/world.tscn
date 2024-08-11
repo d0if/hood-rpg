@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=34 format=3 uid="uid://b4s7horcpgaf7"]
 
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
 [ext_resource type="Texture2D" uid="uid://b0mvtccdl2pu1" path="res://Art/buildings/MCBURGER.png" id="3_dsa5p"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/door.gd" id="14_opu1e"]
 [ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="15_qmwaj"]
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="15_slhwj"]
+[ext_resource type="PackedScene" uid="uid://u1gjafb332xs" path="res://Scenes/ghosty.tscn" id="16_1p5d3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dscbt"]
 texture = ExtResource("2_kmgia")
@@ -228,6 +229,9 @@ shape = SubResource("RectangleShape2D_2hsiw")
 
 [node name="EXIT POSITION" parent="gas-door" index="1"]
 position = Vector2(818, 280)
+
+[node name="Ghosty_npc" parent="." instance=ExtResource("16_1p5d3")]
+position = Vector2(299, 70)
 
 [connection signal="body_entered" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_entered"]
 [connection signal="body_exited" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_exited"]
