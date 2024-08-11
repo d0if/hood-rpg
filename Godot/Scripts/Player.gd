@@ -59,7 +59,7 @@ func player_movement(_delta):
 		play_anim(1)
 	elif walk_speed < velocity.length():
 		current_dir = Global.split_vector_into_eight_directions(velocity)
-		play_anim(1) #future SPRINT animation???
+		play_anim(2) #future SPRINT animation???
 	else:
 		current_dir = "none"
 		play_anim(0)
@@ -85,6 +85,8 @@ func play_anim(movement):
 		anim.flip_h = false
 	
 	match movement:
+		2:
+			anim.play("sprinting")
 		1:
 			anim.play("walking")
 		0:
