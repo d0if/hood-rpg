@@ -139,3 +139,12 @@ func _ready():
 		#position = Global.pos_history[Global.current_scene]
 	pass
 
+
+func pause():
+	if get_tree().paused:
+		get_tree().paused = false
+		$Camera2D/CanvasLayer/BLUR.material.set_shader_parameter("lod", 0.0)
+	else:
+		get_tree().paused = true
+		$Camera2D/CanvasLayer/BLUR.material.set_shader_parameter("lod", 2.2)
+	pass # Replace with function body.
