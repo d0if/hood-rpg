@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://yo2q5noo76rt"]
+
+[ext_resource type="Script" path="res://Scripts/drug_dealer.gd" id="1_3ri7d"]
+[ext_resource type="Texture2D" uid="uid://b4nixbyl81pxy" path="res://Art/npc characters/anime/Drug dealer sus-sheet.png" id="1_v2lue"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alecg"]
+atlas = ExtResource("1_v2lue")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28gfh"]
+atlas = ExtResource("1_v2lue")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eneqq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alecg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28gfh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w72a6"]
+size = Vector2(10, 18)
+
+[node name="Drug_dealer" type="CharacterBody2D"]
+script = ExtResource("1_3ri7d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eneqq")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_w72a6")
