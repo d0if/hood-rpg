@@ -1,5 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=37 format=3 uid="uid://b4s7horcpgaf7"]
 
+[ext_resource type="Texture2D" uid="uid://gatlvhjho7f2" path="res://Art/buildings/Bank.png" id="1_lmp53"]
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
 [ext_resource type="Texture2D" uid="uid://b0mvtccdl2pu1" path="res://Art/buildings/MCBURGER.png" id="3_dsa5p"]
 [ext_resource type="Texture2D" uid="uid://c7diah2b0ecum" path="res://Art/buildings/Apartment building.png" id="4_18veh"]
@@ -17,6 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="15_slhwj"]
 [ext_resource type="PackedScene" uid="uid://u1gjafb332xs" path="res://Scenes/ghosty.tscn" id="16_1p5d3"]
 [ext_resource type="PackedScene" uid="uid://yo2q5noo76rt" path="res://Scenes/drug_dealer.tscn" id="17_cawny"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pk4bp"]
+texture = ExtResource("1_lmp53")
+1:0/size_in_atlas = Vector2i(14, 7)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-111.5, -40, -39.598, -40.3051, -39.2444, -48.0833, 40.3051, -47.7297, 40.6586, -40.3051, 111.723, -39.598, 112.076, 35.0018, -111.723, 32.5269)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dscbt"]
 texture = ExtResource("2_kmgia")
@@ -138,6 +147,7 @@ sources/10 = SubResource("TileSetAtlasSource_b1dgi")
 sources/11 = SubResource("TileSetAtlasSource_buatu")
 sources/12 = SubResource("TileSetAtlasSource_cybdc")
 sources/9 = SubResource("TileSetAtlasSource_jun6y")
+sources/0 = SubResource("TileSetAtlasSource_pk4bp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3nr5l"]
 size = Vector2(30, 26)
@@ -167,7 +177,7 @@ layer_1/tile_data = PackedInt32Array(-131070, 9, 0, -131066, 9, 0, -131062, 9, 0
 layer_2/name = "ysort"
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Buildings"
-layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 65541, 1, 786488, 65542, 1, 786459, 65543, 1, 2097172, 65548, 1, 786466, 65547, 0, 786473, 65548, 1, 2097192, 65544, 1, 1966136, 65546, 5, 2097180, 65543, 1, 2097186, 65543, 1)
+layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 65541, 1, 786488, 65542, 1, 786459, 65543, 1, 2097172, 65548, 1, 786466, 65547, 0, 786473, 65548, 1, 2097192, 65544, 1, 1966136, 65546, 5, 2097180, 65543, 1, 2097186, 65543, 1, 1507364, 65536, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_h6q1r")]
 position = Vector2(212, 111)
