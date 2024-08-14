@@ -10,12 +10,14 @@ extends CharacterBody2D
 var direction: int = 1 
 var start_position: Vector2
 
+
 func _ready():
 	
 	if idle_animation != "":
 		sprite.play(idle_animation)
 
 	start_position = position
+
 
 func _process(delta):
 	
@@ -26,9 +28,3 @@ func _process(delta):
 		direction *= -1
 		sprite.flip_h = direction > 0
 		
-
-
-
-
-
-

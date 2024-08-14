@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsu61vh2eww0"]
+
+[ext_resource type="Texture2D" uid="uid://rh7yblcq01vo" path="res://Art/npc characters/the hood elder black.png" id="1_ii1h2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdjwb"]
+size = Vector2(10, 20)
+
+[node name="Black_hood_elder" type="CharacterBody2D"]
+position = Vector2(40, 41)
+
+[node name="TheHoodElderBlack" type="Sprite2D" parent="."]
+position = Vector2(-40, -41)
+texture = ExtResource("1_ii1h2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-40, -40)
+shape = SubResource("RectangleShape2D_pdjwb")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=42 format=3 uid="uid://b4s7horcpgaf7"]
 
 [ext_resource type="Texture2D" uid="uid://gatlvhjho7f2" path="res://Art/buildings/Bank.png" id="1_lmp53"]
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bq1evcv3hya6p" path="res://Art/buildings/Chingy ding ding resturant.png" id="5_21mhy"]
 [ext_resource type="Texture2D" uid="uid://dnigx7h3jcyqx" path="res://Art/buildings/Brown Building.png" id="5_fbl88"]
 [ext_resource type="Texture2D" uid="uid://cdfg75qrvuyl8" path="res://Art/buildings/Liquor Store.png" id="6_7ocl3"]
+[ext_resource type="Texture2D" uid="uid://dihjeksovr8s6" path="res://Art/buildings/duplex.png" id="6_n4tum"]
 [ext_resource type="Texture2D" uid="uid://bwe0urjfqtnu0" path="res://Art/buildings/gas station.png" id="7_niwnk"]
 [ext_resource type="Texture2D" uid="uid://bcqnmddm2gkiv" path="res://Art/buildings/grey building.png" id="8_we15j"]
 [ext_resource type="Texture2D" uid="uid://cbcrn78oaplqu" path="res://Art/buildings/Fencing Border/Fences.png" id="11_bb1ip"]
@@ -18,6 +19,9 @@
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="15_slhwj"]
 [ext_resource type="PackedScene" uid="uid://u1gjafb332xs" path="res://Scenes/ghosty.tscn" id="16_1p5d3"]
 [ext_resource type="PackedScene" uid="uid://yo2q5noo76rt" path="res://Scenes/drug_dealer.tscn" id="17_cawny"]
+[ext_resource type="PackedScene" uid="uid://cbsu61vh2eww0" path="res://Scenes/black_hood_elder.tscn" id="20_j6akt"]
+[ext_resource type="PackedScene" uid="uid://ck4mkmw52tvkn" path="res://Scenes/white_hood_elder.tscn" id="21_8sj2o"]
+[ext_resource type="PackedScene" uid="uid://8ujrbylgroe0" path="res://Scenes/white_kid.tscn" id="22_bytpu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pk4bp"]
 texture = ExtResource("1_lmp53")
@@ -70,6 +74,14 @@ texture = ExtResource("5_fbl88")
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-47.7297, -47.8181, 47.7297, -47.9949, 48.0833, 21.6551, -48.0833, 22.3623)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcsrs"]
+texture = ExtResource("6_n4tum")
+0:1/size_in_atlas = Vector2i(8, 7)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-63.6396, -55.5079, 63.6396, -55.8614, 63.6396, 31.8198, -63.9932, 32.5269)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nycko"]
 texture = ExtResource("4_18veh")
@@ -148,6 +160,7 @@ sources/11 = SubResource("TileSetAtlasSource_buatu")
 sources/12 = SubResource("TileSetAtlasSource_cybdc")
 sources/9 = SubResource("TileSetAtlasSource_jun6y")
 sources/0 = SubResource("TileSetAtlasSource_pk4bp")
+sources/2 = SubResource("TileSetAtlasSource_fcsrs")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3nr5l"]
 size = Vector2(30, 26)
@@ -177,7 +190,7 @@ layer_1/tile_data = PackedInt32Array(-131070, 9, 0, -131066, 9, 0, -131062, 9, 0
 layer_2/name = "ysort"
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Buildings"
-layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 65541, 1, 786488, 65542, 1, 786459, 65543, 1, 2097172, 65548, 1, 786466, 65547, 0, 786473, 65548, 1, 2097192, 65544, 1, 1966136, 65546, 5, 2097180, 65543, 1, 2097186, 65543, 1, 1507364, 65536, 0)
+layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 65541, 1, 786488, 65542, 1, 786459, 65543, 1, 2097172, 65548, 1, 786466, 65547, 0, 786473, 65548, 1, 2097192, 65544, 1, 1966136, 65546, 5, 2097180, 65543, 1, 2097186, 65543, 1, 1507364, 65536, 0, 1572872, 2, 1)
 
 [node name="Player" parent="." instance=ExtResource("4_h6q1r")]
 position = Vector2(212, 111)
@@ -242,10 +255,19 @@ shape = SubResource("RectangleShape2D_2hsiw")
 position = Vector2(818, 280)
 
 [node name="Ghosty_npc" parent="." instance=ExtResource("16_1p5d3")]
-position = Vector2(299, 70)
+position = Vector2(301, 71)
 
 [node name="Drug_dealer" parent="." instance=ExtResource("17_cawny")]
 position = Vector2(390, 258)
+
+[node name="Black_hood_elder" parent="." instance=ExtResource("20_j6akt")]
+position = Vector2(150, 502)
+
+[node name="White_hood_elder" parent="." instance=ExtResource("21_8sj2o")]
+position = Vector2(166, 462)
+
+[node name="White_kid" parent="." instance=ExtResource("22_bytpu")]
+position = Vector2(157, 468)
 
 [connection signal="body_entered" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_entered"]
 [connection signal="body_exited" from="Apartment_transition_point" to="." method="_on_apartment_transition_point_body_exited"]
