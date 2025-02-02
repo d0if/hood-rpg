@@ -183,14 +183,12 @@ layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 6554
 position = Vector2(185, 101)
 
 [node name="Apartment_transition_point" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apartment_transition_point"]
 position = Vector2(118, 63)
 shape = SubResource("RectangleShape2D_3nr5l")
 
 [node name="Chingy_enter" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chingy_enter"]
 position = Vector2(153, 246.5)
