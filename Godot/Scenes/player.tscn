@@ -207,6 +207,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+visible = false
 
 [node name="BLUR" type="ColorRect" parent="Camera2D/HUD"]
 material = SubResource("ShaderMaterial_5noka")

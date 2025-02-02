@@ -23,6 +23,8 @@ func door_exit():
 				break
 		if paired_door:
 			paired_door.move_player_to_exit()
+		else:
+			print("failed to find door \'" + Global.paired_door + "\' in scene " + Global.current_scene)
 	
 	Global.paired_door = ""
 	
