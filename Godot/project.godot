@@ -23,6 +23,10 @@ Global="*res://Scripts/global.gd"
 
 window/stretch/mode="canvas_items"
 
+[dotnet]
+
+project/assembly_name="Hood Rpg"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

@@ -63,6 +63,9 @@ editor_description = "HOW TO SETUP DOOR:
 metadata/Pairing = "gas"
 metadata/Target = "world"
 
+[node name="Area2D" parent="gas-station-door" index="0"]
+visible = false
+
 [node name="DOOR COLLISION" parent="gas-station-door/Area2D" index="0"]
 position = Vector2(455.5, 403)
 shape = SubResource("RectangleShape2D_mj186")
@@ -71,10 +74,24 @@ shape = SubResource("RectangleShape2D_mj186")
 position = Vector2(457, 344)
 
 [node name="Player" parent="." instance=ExtResource("4_ay11h")]
-position = Vector2(613, 303)
+position = Vector2(614, 305)
 scale = Vector2(2, 2)
 
 [node name="base_world_scene" type="Node" parent="."]
 script = ExtResource("5_dtmnv")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(598, 141)
+scale = Vector2(3.02, 3.02)
+
+[node name="TextureButton" type="TextureButton" parent="Area2D"]
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 5.0
 
 [editable path="gas-station-door"]
