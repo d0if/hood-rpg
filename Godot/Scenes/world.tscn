@@ -66,16 +66,19 @@ texture = ExtResource("5_fbl88")
 texture = ExtResource("6_8u38a")
 1:1/size_in_atlas = Vector2i(6, 14)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -65, 0, -112, 47, -65, 45, 94, -8, 75, -47, 92)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6w6sv"]
 texture = ExtResource("7_3kbuv")
 1:1/size_in_atlas = Vector2i(6, 6)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -48, 0, -49, 46, -50, 49, 19, -9, 20, -49, 18)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gt5lc"]
 texture = ExtResource("8_6gjx8")
 1:1/size_in_atlas = Vector2i(6, 6)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-50, -48, 0, -49, 46, -50, 49, 19, -9, 20, -50, 21)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcsrs"]
 texture = ExtResource("6_n4tum")
