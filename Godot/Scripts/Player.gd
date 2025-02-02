@@ -135,6 +135,7 @@ func play_anim(movement):
 	#Global.pos_rem()
 	
 func _ready():
+	get_node("Camera2D/HUD").visible = true #show the HUD when the player loads in
 	#if Global.current_scene in Global.pos_history:
 		#position = Global.pos_history[Global.current_scene]
 	pass
