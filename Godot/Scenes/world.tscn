@@ -183,7 +183,7 @@ layer_3/name = "Buildings"
 layer_3/tile_data = PackedInt32Array(8, 65539, 0, 786441, 65540, 1, 786451, 65541, 1, 786488, 65542, 1, 786459, 65543, 1, 2097172, 65548, 1, 786466, 65547, 0, 786473, 65548, 1, 2097192, 65544, 1, 1966136, 65546, 5, 2097180, 65543, 1, 2097186, 65543, 1, 1507364, 65536, 0, 1572872, 2, 1, 786499, 65551, 1, 2293768, 65550, 1, 1835075, 65549, 1)
 
 [node name="Player" parent="." instance=ExtResource("4_h6q1r")]
-position = Vector2(185, 101)
+position = Vector2(150, 101)
 
 [node name="Apartment_transition_point" type="Area2D" parent="."]
 
