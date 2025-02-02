@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Hood Rpg"
 run/main_scene="res://Scenes/player.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Art/icon.svg"
 
 [autoload]
@@ -22,6 +22,10 @@ Global="*res://Scripts/global.gd"
 [display]
 
 window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="Hood Rpg"
 
 [rendering]
 

@@ -15,3 +15,7 @@ func _process(delta):
 		esc_held = true
 	else:
 		esc_held = false
+		
+func _pressed():
+	print("im killing miyself")
+	get_tree().get_first_node_in_group("player").pause()

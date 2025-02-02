@@ -143,8 +143,8 @@ func _ready():
 func pause():
 	if get_tree().paused:
 		get_tree().paused = false
-		$Camera2D/CanvasLayer/BLUR.material.set_shader_parameter("lod", 0.0)
+		$Camera2D/HUD/BLUR.material.set_shader_parameter("lod", 0.0)
 	else:
 		get_tree().paused = true
-		$Camera2D/CanvasLayer/BLUR.material.set_shader_parameter("lod", 2.2)
+		$Camera2D/HUD/BLUR.material.set_shader_parameter("lod", 2.2)
 	pass # Replace with function body.
