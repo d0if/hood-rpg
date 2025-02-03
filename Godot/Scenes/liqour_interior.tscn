@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c04848nhdrsld"]
+[gd_scene load_steps=12 format=3 uid="uid://c04848nhdrsld"]
 
 [ext_resource type="Texture2D" uid="uid://dkuobautsgsxl" path="res://Art/tilesets/liqour interior.png" id="1_8llsx"]
 [ext_resource type="Texture2D" uid="uid://cda1hfqmghn0u" path="res://Art/tilesets/liqour interior-sheet.png" id="2_guogv"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="3_2vma4"]
 [ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="4_qe7y3"]
+[ext_resource type="Texture2D" uid="uid://crytq1r7hkb6h" path="res://Art/npc characters/Elfanzo.png" id="5_tnxda"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncdwj"]
 texture = ExtResource("1_8llsx")
@@ -14,21 +15,21 @@ texture = ExtResource("1_8llsx")
 4:0/0 = 0
 8:0/size_in_atlas = Vector2i(4, 4)
 8:0/0 = 0
-8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32.5, -31.5, 31.5, -31.5, 33, 33, -33, 32.5)
+8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-31.8198, -9.8995, 32.5269, -7.77818, 32.5269, 11.6673, -32.5269, 14.1421)
 12:0/size_in_atlas = Vector2i(4, 4)
 12:0/0 = 0
 16:0/size_in_atlas = Vector2i(4, 4)
 16:0/0 = 0
-16:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-25, -24.5, 25, -24, 24.5, 2, 8, 1, -24, 1)
+16:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-25.1023, -25.1023, 25.1023, -25.1023, 24.7487, 1.06066, -25.1023, 1.06066)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivjrl"]
 texture = ExtResource("2_guogv")
 12:0/size_in_atlas = Vector2i(4, 4)
 12:0/0 = 0
-12:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -14.5, 32, -14.5, 32.5, 14.5, 6, 15, -32, 16.5)
+12:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-31.75, -11.25, 32, -10.75, 32, 15.75, -31.5, 15.5)
 8:0/size_in_atlas = Vector2i(4, 4)
 8:0/0 = 0
-8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -14.5, 32, -14.5, 32.5, 14.5, 6, 15, -32, 16.5)
+8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-31.75, -11.25, 32, -10.75, 32, 15.75, -31.5, 15.5)
 
 [sub_resource type="TileSet" id="TileSet_iecj0"]
 physics_layer_0/collision_layer = 1
@@ -84,6 +85,9 @@ func move_player_to_exit():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
 size = Vector2(127, 24.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ce66u"]
+size = Vector2(10, 21)
+
 [node name="Liqour Interior" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -122,6 +126,17 @@ shape = SubResource("RectangleShape2D_uo0oh")
 
 [node name="EXIT POSITION" type="Marker2D" parent="LIQUOR DOOR"]
 position = Vector2(479, 482)
+
+[node name="Liquor NPC" type="CharacterBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Liquor NPC"]
+position = Vector2(565, 205)
+scale = Vector2(2.4375, 2.375)
+texture = ExtResource("5_tnxda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Liquor NPC/Sprite2D"]
+position = Vector2(-9.71556e-06, 0.421053)
+shape = SubResource("RectangleShape2D_ce66u")
 
 [connection signal="body_entered" from="LIQUOR DOOR/Area2D" to="LIQUOR DOOR" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="LIQUOR DOOR/Area2D" to="LIQUOR DOOR" method="_on_area_2d_body_exited"]

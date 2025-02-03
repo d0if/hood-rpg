@@ -217,8 +217,8 @@ func move_player_to_exit():
 			possible_player.set_global_position($\"EXIT POSITION\".global_position)
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
-size = Vector2(127, 24.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8xydn"]
+size = Vector2(14, 26)
 
 [node name="world" type="Node2D"]
 position = Vector2(-9, 59)
@@ -318,9 +318,9 @@ metadata/Target = "liqour_interior"
 [node name="Area2D" type="Area2D" parent="liq"]
 position = Vector2(0, 1)
 
-[node name="DOOR COLLISION" type="CollisionShape2D" parent="liq/Area2D"]
-position = Vector2(308.5, 247.25)
-shape = SubResource("RectangleShape2D_uo0oh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="liq/Area2D"]
+position = Vector2(309, 246)
+shape = SubResource("RectangleShape2D_8xydn")
 
 [node name="EXIT POSITION" type="Marker2D" parent="liq"]
 position = Vector2(313, 279)

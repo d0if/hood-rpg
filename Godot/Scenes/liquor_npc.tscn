@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwuppub7aatrp"]
+
+[ext_resource type="Texture2D" uid="uid://crytq1r7hkb6h" path="res://Art/npc characters/Elfanzo.png" id="1_ep7ln"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5hdg"]
+size = Vector2(10, 21)
+
+[node name="Liquor NPC" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(33, 33)
+scale = Vector2(2.0625, 2.0625)
+texture = ExtResource("1_ep7ln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_e5hdg")
