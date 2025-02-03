@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd6detoymb7or"]
+[gd_scene load_steps=16 format=3 uid="uid://cjp33sa8oi2k8"]
 
 [ext_resource type="Texture2D" uid="uid://erxs34tx8dvf" path="res://Art/tilesets/interior tilesets/Apartment insisde tiles.png" id="1_iu486"]
 [ext_resource type="Texture2D" uid="uid://ra0tmpxb13n5" path="res://Art/tilesets/interior tilesets/interior door.png" id="2_mevnc"]

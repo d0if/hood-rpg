@@ -171,15 +171,31 @@ animations = [{
 [sub_resource type="GDScript" id="GDScript_fykay"]
 script/source = "extends AnimatedSprite2D
 
+var oscillating: bool = false
+var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	
+	if Global.clock_time >= 7:
+		Global.clock_time = 7
+		if oscillating:
+			return
+		start_oscillation()
+	else:
+		self.frame = Global.clock_time #don't mess with the animation unless we're below 7
+
+
+func start_oscillation():
+	oscillating = true
+	tween = create_tween()
+	tween.set_loops() #infinite loop
+	tween.tween_property(self, \"frame\", 7, 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(self, \"frame\", 8, 0.5).set_trans(Tween.TRANS_LINEAR)
 "
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]

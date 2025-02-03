@@ -119,6 +119,13 @@ position = Vector2(426, 286)
 [node name="base_world_scene" type="Node" parent="."]
 script = ExtResource("8_tb1qe")
 
+[node name="Button" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 121.0
+offset_right = 585.0
+offset_bottom = 245.0
+flat = true
+
 [connection signal="body_entered" from="apt_room_exit" to="." method="_on_apt_room_exit_body_entered"]
 [connection signal="body_exited" from="apt_room_exit" to="." method="_on_apt_room_exit_body_exited"]
 
