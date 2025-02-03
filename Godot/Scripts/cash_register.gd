@@ -1,6 +1,6 @@
 extends TextureButton
 
-@onready var sprite: AnimatedSprite2D = $"../../Clock"  # Adjust path if necessary
+@onready var sprite: AnimatedSprite2D = $"player/Camera2D/HUD/Clock"  # Adjust path if necessary
 var interaction_count: int = 0
 const MAX_INTERACTIONS: int = 7
 var oscillating: bool = false
