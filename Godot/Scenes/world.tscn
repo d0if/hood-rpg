@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=51 format=3 uid="uid://b4s7horcpgaf7"]
 
 [ext_resource type="Texture2D" uid="uid://gatlvhjho7f2" path="res://Art/buildings/Bank.png" id="1_lmp53"]
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
@@ -172,6 +172,54 @@ size = Vector2(23, 19)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hsiw"]
 size = Vector2(16, 15)
 
+[sub_resource type="GDScript" id="GDScript_kag1y"]
+script/source = "extends Node2D
+
+var target_scene = \"\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	change_scenes()
+	pass
+
+
+func _on_area_2d_body_entered(body):
+	if not self.get_meta(\"Lock\"):
+		if body.has_method(\"player\"):
+			Global.transition_scene = true
+			target_scene = self.get_meta(\"Target\")
+			Global.paired_door = self.get_meta(\"Pairing\")
+	pass
+
+
+func _on_area_2d_body_exited(body):
+	if body.has_method(\"player\"):
+		Global.transition_scene = false
+	pass # Replace with function body.
+
+func change_scenes():
+	if Global.transition_scene && Global.paired_door == self.get_meta(\"Pairing\"):
+		#if Global.current_scene == (somehow get current scene file name)
+		var paired_door = self.get_meta(\"Pairing\")
+		Global.finish_changescenes(target_scene)
+
+func move_player_to_exit():
+	var players = get_tree().get_nodes_in_group(\"player\")
+	
+	if players.size() > 0:
+		for possible_player in players:
+			possible_player.set_global_position($\"EXIT POSITION\".global_position)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
+size = Vector2(127, 24.5)
+
 [node name="world" type="Node2D"]
 position = Vector2(-9, 59)
 
@@ -225,7 +273,7 @@ position = Vector2(153.5, 242.5)
 shape = SubResource("RectangleShape2D_3ivmw")
 
 [node name="EXIT POSITION" type="Marker2D" parent="Test-chingy-door"]
-position = Vector2(153, 278)
+position = Vector2(154, 275)
 
 [node name="base_world_scene" type="Node" parent="."]
 script = ExtResource("15_qmwaj")
@@ -256,11 +304,34 @@ position = Vector2(166, 462)
 [node name="White_kid" parent="." instance=ExtResource("22_bytpu")]
 position = Vector2(157, 468)
 
+[node name="liq" type="Node2D" parent="." groups=["doors"]]
+editor_description = "HOW TO SETUP DOOR:
+1: in desired scene hit chain button (instantiate child scene). add door
+2: go to door inspector (right side) hit screwdriver wrench button and click \"make subresources unique\"
+3: move door hitbox & exit position
+4: in inspector, go to metadata dropdown. \"Target\" will select the scene that the door takes you to & \"Pairing\" needs to match between in/out doors (can be anythign)"
+script = SubResource("GDScript_kag1y")
+metadata/Pairing = "liq"
+metadata/Lock = false
+metadata/Target = "liqour_interior"
+
+[node name="Area2D" type="Area2D" parent="liq"]
+position = Vector2(0, 1)
+
+[node name="DOOR COLLISION" type="CollisionShape2D" parent="liq/Area2D"]
+position = Vector2(308.5, 247.25)
+shape = SubResource("RectangleShape2D_uo0oh")
+
+[node name="EXIT POSITION" type="Marker2D" parent="liq"]
+position = Vector2(313, 279)
+
 [connection signal="body_entered" from="Chingy_enter" to="." method="_on_chingy_enter_body_entered"]
 [connection signal="body_exited" from="Chingy_enter" to="." method="_on_chingy_enter_body_exited"]
 [connection signal="body_entered" from="Test-apt-door/Area2D" to="Test-apt-door" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Test-apt-door/Area2D" to="Test-apt-door" method="_on_area_2d_body_exited"]
 [connection signal="body_entered" from="Test-chingy-door/Area2D" to="Test-chingy-door" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Test-chingy-door/Area2D" to="Test-chingy-door" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="liq/Area2D" to="liq" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="liq/Area2D" to="liq" method="_on_area_2d_body_exited"]
 
 [editable path="gas-door"]

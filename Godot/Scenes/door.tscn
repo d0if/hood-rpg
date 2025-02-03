@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/door.gd" id="1_fyqbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
+size = Vector2(127, 24.5)
 
 [node name="DOOR-COPYPASTE" type="Node2D" groups=["doors"]]
 editor_description = "HOW TO SETUP DOOR:

@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=3 uid="uid://c04848nhdrsld"]
+
+[ext_resource type="Texture2D" uid="uid://dkuobautsgsxl" path="res://Art/tilesets/liqour interior.png" id="1_8llsx"]
+[ext_resource type="Texture2D" uid="uid://cda1hfqmghn0u" path="res://Art/tilesets/liqour interior-sheet.png" id="2_guogv"]
+[ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="3_2vma4"]
+[ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="4_qe7y3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ncdwj"]
+texture = ExtResource("1_8llsx")
+0:0/size_in_atlas = Vector2i(4, 4)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32.5, -31.5, 31.5, -31.5, 33, 33, -33, 32.5)
+4:0/size_in_atlas = Vector2i(4, 4)
+4:0/0 = 0
+8:0/size_in_atlas = Vector2i(4, 4)
+8:0/0 = 0
+8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32.5, -31.5, 31.5, -31.5, 33, 33, -33, 32.5)
+12:0/size_in_atlas = Vector2i(4, 4)
+12:0/0 = 0
+16:0/size_in_atlas = Vector2i(4, 4)
+16:0/0 = 0
+16:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-25, -24.5, 25, -24, 24.5, 2, 8, 1, -24, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ivjrl"]
+texture = ExtResource("2_guogv")
+12:0/size_in_atlas = Vector2i(4, 4)
+12:0/0 = 0
+12:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -14.5, 32, -14.5, 32.5, 14.5, 6, 15, -32, 16.5)
+8:0/size_in_atlas = Vector2i(4, 4)
+8:0/0 = 0
+8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -14.5, 32, -14.5, 32.5, 14.5, 6, 15, -32, 16.5)
+
+[sub_resource type="TileSet" id="TileSet_iecj0"]
+physics_layer_0/collision_layer = 1
+physics_layer_1/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_ncdwj")
+sources/1 = SubResource("TileSetAtlasSource_ivjrl")
+
+[sub_resource type="GDScript" id="GDScript_tjn2f"]
+script/source = "extends Node2D
+
+var target_scene = \"\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	change_scenes()
+	pass
+
+
+func _on_area_2d_body_entered(body):
+	if not self.get_meta(\"Lock\"):
+		if body.has_method(\"player\"):
+			Global.transition_scene = true
+			target_scene = self.get_meta(\"Target\")
+			Global.paired_door = self.get_meta(\"Pairing\")
+	pass
+
+
+func _on_area_2d_body_exited(body):
+	if body.has_method(\"player\"):
+		Global.transition_scene = false
+	pass # Replace with function body.
+
+func change_scenes():
+	if Global.transition_scene && Global.paired_door == self.get_meta(\"Pairing\"):
+		#if Global.current_scene == (somehow get current scene file name)
+		var paired_door = self.get_meta(\"Pairing\")
+		Global.finish_changescenes(target_scene)
+
+func move_player_to_exit():
+	var players = get_tree().get_nodes_in_group(\"player\")
+	
+	if players.size() > 0:
+		for possible_player in players:
+			possible_player.set_global_position($\"EXIT POSITION\".global_position)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uo0oh"]
+size = Vector2(127, 24.5)
+
+[node name="Liqour Interior" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_iecj0")
+format = 2
+layer_0/name = "floor"
+layer_0/tile_data = PackedInt32Array(1638414, 262144, 0, 1638418, 262144, 0, 1900562, 262144, 0, 1900558, 262144, 0, 1900566, 262144, 0, 1638422, 262144, 0, 1638426, 262144, 0, 1900570, 262144, 0, 1900574, 262144, 0, 1638430, 262144, 0, 1376286, 262144, 0, 1376282, 262144, 0, 1376278, 262144, 0, 1376274, 262144, 0, 1376270, 262144, 0, 1114126, 262144, 0, 1114130, 262144, 0, 1114134, 262144, 0, 1114138, 262144, 0, 1114142, 262144, 0, 851998, 262144, 0, 851994, 262144, 0, 851990, 262144, 0, 851986, 262144, 0, 851982, 262144, 0, 852002, 262144, 0, 1376290, 262144, 0, 1638434, 262144, 0, 1900578, 262144, 0, 1900582, 262144, 0, 1638438, 262144, 0, 1376294, 262144, 0, 1114150, 262144, 0, 852006, 262144, 0, 2162714, 262144, 0, 2162718, 262144, 0, 1114146, 262144, 0)
+layer_1/name = "walls"
+layer_1/tile_data = PackedInt32Array(2162710, 0, 0, 2162709, 0, 0, 2162708, 0, 0, 2162707, 0, 0, 2162706, 0, 0, 2162705, 0, 0, 2162704, 0, 0, 2162703, 0, 0, 2162702, 0, 0, 2162701, 0, 0, 2162700, 0, 0, 2162698, 0, 0, 1900554, 0, 0, 1835018, 0, 0, 1769482, 0, 0, 1703946, 0, 0, 1638410, 0, 0, 1572874, 0, 0, 1507338, 0, 0, 1441802, 0, 0, 1376266, 0, 0, 1310730, 0, 0, 1245194, 0, 0, 1179658, 0, 0, 1114122, 0, 0, 1048586, 0, 0, 983050, 0, 0, 917514, 0, 0, 851978, 0, 0, 589834, 0, 0, 589838, 0, 0, 589839, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 589846, 0, 0, 589847, 0, 0, 589848, 0, 0, 589849, 0, 0, 589850, 0, 0, 589851, 0, 0, 589852, 0, 0, 589853, 0, 0, 589854, 0, 0, 589855, 0, 0, 589856, 0, 0, 589857, 0, 0, 589858, 0, 0, 589859, 0, 0, 589860, 0, 0, 589863, 0, 0, 589866, 0, 0, 852010, 0, 0, 917546, 0, 0, 983082, 0, 0, 1048618, 0, 0, 1114154, 0, 0, 1179690, 0, 0, 1245226, 0, 0, 1310762, 0, 0, 1376298, 0, 0, 1441834, 0, 0, 1507370, 0, 0, 1572906, 0, 0, 1638442, 0, 0, 1703978, 0, 0, 1769514, 0, 0, 1835050, 0, 0, 1900586, 0, 0, 2162730, 0, 0, 2162729, 0, 0, 2162728, 0, 0, 2162727, 0, 0, 2162726, 0, 0, 2162725, 0, 0, 2162724, 0, 0, 2162723, 0, 0, 2162722, 0, 0, 2424866, 0, 0, 2424862, 0, 0, 2424858, 0, 0, 2424854, 0, 0)
+layer_2/name = "objects"
+layer_2/tile_data = PackedInt32Array(1376270, 1048576, 0, 1376273, 1048576, 0, 1376276, 1048576, 0, 1376279, 1048576, 0, 1769486, 1048576, 0, 1769489, 1048576, 0, 1769492, 1048576, 0, 1769495, 1048576, 0, 1769506, 1048576, 0, 1769509, 1048576, 0, 1376290, 1048576, 0, 1376293, 1048576, 0, 917527, 1048576, 0, 917524, 1048576, 0, 917521, 1048576, 0, 917518, 1048576, 0, 983074, 786433, 0, 983078, 524289, 0, 983070, 524289, 0, 655398, 1048576, 0, 655395, 1048576, 0, 655392, 1048576, 0, 655389, 1048576, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_2vma4")]
+position = Vector2(433, 474)
+scale = Vector2(2.5, 2.5)
+
+[node name="base_world_scene" type="Node" parent="."]
+script = ExtResource("4_qe7y3")
+
+[node name="LIQUOR DOOR" type="Node2D" parent="." groups=["doors"]]
+editor_description = "HOW TO SETUP DOOR:
+1: in desired scene hit chain button (instantiate child scene). add door
+2: go to door inspector (right side) hit screwdriver wrench button and click \"make subresources unique\"
+3: move door hitbox & exit position
+4: in inspector, go to metadata dropdown. \"Target\" will select the scene that the door takes you to & \"Pairing\" needs to match between in/out doors (can be anythign)"
+script = SubResource("GDScript_tjn2f")
+metadata/Pairing = "liq"
+metadata/Lock = false
+metadata/Target = "world"
+
+[node name="Area2D" type="Area2D" parent="LIQUOR DOOR"]
+
+[node name="DOOR COLLISION" type="CollisionShape2D" parent="LIQUOR DOOR/Area2D"]
+position = Vector2(456.5, 555.5)
+shape = SubResource("RectangleShape2D_uo0oh")
+
+[node name="EXIT POSITION" type="Marker2D" parent="LIQUOR DOOR"]
+position = Vector2(479, 482)
+
+[connection signal="body_entered" from="LIQUOR DOOR/Area2D" to="LIQUOR DOOR" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="LIQUOR DOOR/Area2D" to="LIQUOR DOOR" method="_on_area_2d_body_exited"]
