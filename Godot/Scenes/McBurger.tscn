@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://crijfkrwhsggc"]
+[gd_scene load_steps=7 format=3 uid="uid://crijfkrwhsggc"]
 
 [ext_resource type="Texture2D" uid="uid://m1wgnnujlt32" path="res://Art/tilesets/mcburger tileset/mcburge.png" id="1_ekpp5"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="2_isima"]
+[ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="3_qp3gs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sk120"]
 texture = ExtResource("1_ekpp5")
@@ -29,6 +30,51 @@ texture = ExtResource("1_ekpp5")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_sk120")
 
+[sub_resource type="GDScript" id="GDScript_0tcg4"]
+script/source = "extends Node2D
+
+var target_scene = \"\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	change_scenes()
+	pass
+
+
+func _on_area_2d_body_entered(body):
+	if not self.get_meta(\"Lock\"):
+		if body.has_method(\"player\"):
+			Global.transition_scene = true
+			target_scene = self.get_meta(\"Target\")
+			Global.paired_door = self.get_meta(\"Pairing\")
+	pass
+
+
+func _on_area_2d_body_exited(body):
+	if body.has_method(\"player\"):
+		Global.transition_scene = false
+	pass # Replace with function body.
+
+func change_scenes():
+	if Global.transition_scene && Global.paired_door == self.get_meta(\"Pairing\"):
+		#if Global.current_scene == (somehow get current scene file name)
+		var paired_door = self.get_meta(\"Pairing\")
+		Global.finish_changescenes(target_scene)
+
+func move_player_to_exit():
+	var players = get_tree().get_nodes_in_group(\"player\")
+	
+	if players.size() > 0:
+		for possible_player in players:
+			possible_player.set_global_position($\"EXIT POSITION\".global_position)
+"
+
 [node name="Mcburger" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -42,5 +88,18 @@ layer_2/name = "objects"
 layer_2/tile_data = PackedInt32Array(458781, 524288, 0, 458787, 524288, 0, 458793, 524288, 0, 917549, 1048576, 0, 917541, 1310720, 0, 917533, 1310720, 0, 917537, 1048576, 0, 917529, 1048576, 0, 1638427, 786432, 0, 1245211, 786432, 0, 1638445, 786432, 0, 1638441, 786432, 0, 1245229, 786432, 0, 1441825, 786432, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_isima")]
-position = Vector2(569, 505)
+position = Vector2(568, 442)
 scale = Vector2(2.5, 2.5)
+
+[node name="mcburger door" parent="." instance=ExtResource("3_qp3gs")]
+script = SubResource("GDScript_0tcg4")
+metadata/Pairing = "McG"
+metadata/Target = "World"
+
+[node name="DOOR COLLISION" parent="mcburger door/Area2D" index="0"]
+position = Vector2(567, 522)
+
+[node name="EXIT POSITION" parent="mcburger door" index="1"]
+position = Vector2(570, 465)
+
+[editable path="mcburger door"]
