@@ -24,6 +24,7 @@ func _pressed():
 		#start_oscillation()
 	if Global.clock_time < 7:
 		Global.clock_time += 1
+		Global.money += randi_range(6, 10) + (randi_range(0,99) * 0.01)
 	else:
 		print("NICE TRY GOOBER!!!")
 	

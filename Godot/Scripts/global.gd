@@ -1,6 +1,8 @@
 extends Node
 
 var clock_time = 0
+var current_day = 1
+var money = 0
 
 var current_scene = "world" #world Apartment_inside
 var paired_door = ""

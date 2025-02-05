@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dywsyd3peqxoc"]
+[gd_scene load_steps=17 format=3 uid="uid://dywsyd3peqxoc"]
 
 [ext_resource type="Texture2D" uid="uid://746ihp1h66px" path="res://Art/tilesets/room tileset/room floor + walls.png" id="2_kqru2"]
 [ext_resource type="Texture2D" uid="uid://da4857bocboi7" path="res://Art/tilesets/room tileset/gooner desk.png" id="3_6diej"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://briqkbecqnlwk" path="res://Art/tilesets/interior tilesets/apt interior tiles.png" id="5_5a5r5"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="6_hk56f"]
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="7_wfu74"]
+[ext_resource type="Texture2D" uid="uid://cy5qffjbk44fv" path="res://Art/Transparent BUTTON texture.png" id="8_077qi"]
 [ext_resource type="Script" path="res://Scripts/Base scripts/world script.gd" id="8_tb1qe"]
 
 [sub_resource type="GDScript" id="GDScript_pin7v"]
@@ -38,6 +39,12 @@ func _ready():
 	#if Global.transition_scene == true:
 		#if Global.current_scene == \"apt_room\":
 			#Global.finish_changescenes(target_scene)
+
+
+func _on_texture_button_pressed() -> void:
+	Global.current_day += 1
+	Global.clock_time = 0 # Replace with function body.
+	print(\"SLEEPED\")
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ewgpn"]
@@ -119,14 +126,16 @@ position = Vector2(426, 286)
 [node name="base_world_scene" type="Node" parent="."]
 script = ExtResource("8_tb1qe")
 
-[node name="Button" type="Button" parent="."]
+[node name="TextureButton" type="TextureButton" parent="."]
 offset_left = 519.0
 offset_top = 121.0
 offset_right = 585.0
-offset_bottom = 245.0
-flat = true
+offset_bottom = 246.0
+texture_normal = ExtResource("8_077qi")
+stretch_mode = 0
 
 [connection signal="body_entered" from="apt_room_exit" to="." method="_on_apt_room_exit_body_entered"]
 [connection signal="body_exited" from="apt_room_exit" to="." method="_on_apt_room_exit_body_exited"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 
 [editable path="room-door-test"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cq6vwjq76mc7s"]
+[gd_scene load_steps=42 format=3 uid="uid://cq6vwjq76mc7s"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_htp4k"]
 [ext_resource type="Texture2D" uid="uid://15r2nq35g6ts" path="res://Art/Main player/Sprite-0001 Still.png" id="2_imvg8"]
@@ -8,8 +8,11 @@
 [ext_resource type="Script" path="res://Scripts/Pause Button.gd" id="6_85s3y"]
 [ext_resource type="Texture2D" uid="uid://s0pd4evca38g" path="res://Art/HUD art/DAY counter.png" id="7_jjpys"]
 [ext_resource type="Texture2D" uid="uid://qc0jacoglhtc" path="res://Art/HUD art/Cash Counter.png" id="8_l62ti"]
+[ext_resource type="FontFile" uid="uid://dlyrcbyvrws0h" path="res://Art/HOODRPG-FONT.ttf" id="9_gwewy"]
+[ext_resource type="Script" path="res://Scripts/daycounter.gd" id="9_h1lul"]
 [ext_resource type="Texture2D" uid="uid://dqr2voxxrf0pd" path="res://Art/HUD art/INV1.png" id="9_r7gya"]
 [ext_resource type="Texture2D" uid="uid://dlgiaky0v4mha" path="res://Art/HUD art/INV3.png" id="10_rqkho"]
+[ext_resource type="Script" path="res://Scripts/moneycounter.gd" id="11_ch25j"]
 [ext_resource type="Texture2D" uid="uid://vy8r2glnb2u5" path="res://Art/HUD art/INV2.png" id="11_gecgf"]
 [ext_resource type="Texture2D" uid="uid://bkrryb344l35e" path="res://Art/HUD art/INVENTORY slots.png" id="12_csxg7"]
 [ext_resource type="Script" path="res://Scripts/inv_icon.gd" id="12_h3fnn"]
@@ -81,6 +84,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_ridiv"]
+script/source = "extends CanvasLayer
+
+#get these here so we don't have to update 100000 lines if we change the names
+@onready var hud_blur = $\"/BLUR\"
+@onready var hud_pause = $\"/PAUSEbutton\"
+@onready var hud_cash = $\"Cash Counter/Label\"
+@onready var hud_days = $\"Day Counter/Label\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	self.visible = true #show the HUD when the player loads in
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [sub_resource type="Shader" id="Shader_fi2ey"]
 code = "shader_type canvas_item;
 render_mode blend_mix;
@@ -95,7 +118,16 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5noka"]
 shader = SubResource("Shader_fi2ey")
-shader_parameter/lod = 0.0
+shader_parameter/lod = 2.5
+
+[sub_resource type="LabelSettings" id="LabelSettings_jdk1l"]
+font = ExtResource("9_gwewy")
+font_size = 54
+font_color = Color(0.439216, 1, 0.360784, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kfexk"]
+font = ExtResource("9_gwewy")
+font_size = 52
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfuxu"]
 atlas = ExtResource("14_1om5a")
@@ -176,7 +208,7 @@ var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	self.frame = Global.clock_time #run this on reload to fix weirdness when entering new scenes
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -187,6 +219,8 @@ func _process(delta):
 			return
 		start_oscillation()
 	else:
+		if tween:
+			tween.stop()
 		self.frame = Global.clock_time #don't mess with the animation unless we're below 7
 
 
@@ -223,7 +257,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
-visible = false
+script = SubResource("GDScript_ridiv")
 
 [node name="BLUR" type="ColorRect" parent="Camera2D/HUD"]
 visible = false
@@ -259,12 +293,33 @@ offset_right = 975.0
 offset_bottom = 139.0
 texture = ExtResource("8_l62ti")
 
+[node name="Label" type="Label" parent="Camera2D/HUD/Cash Counter"]
+offset_left = -46.0
+offset_top = -9.0
+offset_right = 248.0
+offset_bottom = 64.0
+text = "10000"
+label_settings = SubResource("LabelSettings_jdk1l")
+horizontal_alignment = 2
+script = ExtResource("11_ch25j")
+
 [node name="Day Counter" type="TextureRect" parent="Camera2D/HUD"]
 offset_left = 718.0
 offset_top = 6.0
 offset_right = 974.0
 offset_bottom = 70.0
 texture = ExtResource("7_jjpys")
+
+[node name="Label" type="Label" parent="Camera2D/HUD/Day Counter"]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -8.0
+offset_right = 252.0
+offset_bottom = 63.0
+text = "1"
+label_settings = SubResource("LabelSettings_kfexk")
+horizontal_alignment = 2
+script = ExtResource("9_h1lul")
 
 [node name="INV icon" type="TextureButton" parent="Camera2D/HUD"]
 offset_left = 6.0
@@ -290,6 +345,7 @@ position = Vector2(551, 42)
 scale = Vector2(2.67187, 2.76563)
 sprite_frames = SubResource("SpriteFrames_bmmqn")
 frame_progress = 0.749444
+speed_scale = 10.595
 script = SubResource("GDScript_fykay")
 
 [node name="NEW_apt_cam" type="Camera2D" parent="."]

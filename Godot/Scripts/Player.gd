@@ -135,7 +135,7 @@ func play_anim(movement):
 	#Global.pos_rem()
 	
 func _ready():
-	get_node("Camera2D/HUD").visible = true #show the HUD when the player loads in
+	
 	#if Global.current_scene in Global.pos_history:
 		#position = Global.pos_history[Global.current_scene]
 	pass
@@ -144,8 +144,8 @@ func _ready():
 func pause():
 	if get_tree().paused:
 		get_tree().paused = false
-		$Camera2D/HUD/BLUR.material.set_shader_parameter("lod", 0.0)
+		$Camera2D/HUD/BLUR.visible = false
 	else:
 		get_tree().paused = true
-		$Camera2D/HUD/BLUR.material.set_shader_parameter("lod", 2.2)
+		$Camera2D/HUD/BLUR.visible = true
 	pass # Replace with function body.
