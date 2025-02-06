@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bkrryb344l35e" path="res://Art/HUD art/INVENTORY slots.png" id="12_csxg7"]
 [ext_resource type="Script" path="res://Scripts/inv_icon.gd" id="12_h3fnn"]
 [ext_resource type="Texture2D" uid="uid://crcu277kksdd" path="res://Art/HUD art/Clock sprites.png" id="14_1om5a"]
+[ext_resource type="Script" path="res://Clock.gd" id="18_ke54r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8atas"]
 size = Vector2(10, 21)
@@ -200,38 +201,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_fykay"]
-script/source = "extends AnimatedSprite2D
-
-var oscillating: bool = false
-var tween: Tween
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	self.frame = Global.clock_time #run this on reload to fix weirdness when entering new scenes
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	
-	if Global.clock_time >= 7:
-		Global.clock_time = 7
-		if oscillating:
-			return
-		start_oscillation()
-	else:
-		if tween:
-			tween.stop()
-		self.frame = Global.clock_time #don't mess with the animation unless we're below 7
-
-
-func start_oscillation():
-	oscillating = true
-	tween = create_tween()
-	tween.set_loops() #infinite loop
-	tween.tween_property(self, \"frame\", 7, 0.5).set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(self, \"frame\", 8, 0.5).set_trans(Tween.TRANS_LINEAR)
-"
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_htp4k")
 
@@ -257,6 +226,7 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="HUD" type="CanvasLayer" parent="Camera2D"]
+visible = false
 script = SubResource("GDScript_ridiv")
 
 [node name="BLUR" type="ColorRect" parent="Camera2D/HUD"]
@@ -294,6 +264,7 @@ offset_bottom = 139.0
 texture = ExtResource("8_l62ti")
 
 [node name="Label" type="Label" parent="Camera2D/HUD/Cash Counter"]
+layout_mode = 0
 offset_left = -46.0
 offset_top = -9.0
 offset_right = 248.0
@@ -346,7 +317,7 @@ scale = Vector2(2.67187, 2.76563)
 sprite_frames = SubResource("SpriteFrames_bmmqn")
 frame_progress = 0.749444
 speed_scale = 10.595
-script = SubResource("GDScript_fykay")
+script = ExtResource("18_ke54r")
 
 [node name="NEW_apt_cam" type="Camera2D" parent="."]
 visible = false

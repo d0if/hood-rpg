@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://crijfkrwhsggc"]
+[gd_scene load_steps=8 format=3 uid="uid://crijfkrwhsggc"]
 
 [ext_resource type="Texture2D" uid="uid://m1wgnnujlt32" path="res://Art/tilesets/mcburger tileset/mcburge.png" id="1_ekpp5"]
 [ext_resource type="PackedScene" uid="uid://cq6vwjq76mc7s" path="res://Scenes/player.tscn" id="2_isima"]
 [ext_resource type="PackedScene" uid="uid://bbsav1rsm67u2" path="res://Scenes/door.tscn" id="3_qp3gs"]
+[ext_resource type="PackedScene" uid="uid://cgkuw0883rqf6" path="res://Scenes/wagecuck.tscn" id="4_yp065"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sk120"]
 texture = ExtResource("1_ekpp5")
@@ -102,4 +103,18 @@ position = Vector2(567, 522)
 [node name="EXIT POSITION" parent="mcburger door" index="1"]
 position = Vector2(570, 465)
 
+[node name="wagecuck" parent="." instance=ExtResource("4_yp065")]
+position = Vector2(458, 239)
+
+[node name="Sprite2D" parent="wagecuck" index="0"]
+position = Vector2(2, -63)
+scale = Vector2(3.71875, 3.5625)
+
+[node name="Area2D" parent="wagecuck/Sprite2D" index="0"]
+position = Vector2(1.7479, -0.842105)
+
+[node name="CollisionShape2D" parent="wagecuck/Sprite2D/Area2D" index="0"]
+position = Vector2(-1.7479, 1.12281)
+
 [editable path="mcburger door"]
+[editable path="wagecuck"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b4s7horcpgaf7"]
+[gd_scene load_steps=53 format=3 uid="uid://b4s7horcpgaf7"]
 
 [ext_resource type="Texture2D" uid="uid://gatlvhjho7f2" path="res://Art/buildings/Bank.png" id="1_lmp53"]
 [ext_resource type="Texture2D" uid="uid://dnl5l7g22fiag" path="res://Art/tilesets/custom ez road tiles.png" id="2_kmgia"]
@@ -265,6 +265,51 @@ func move_player_to_exit():
 			possible_player.set_global_position($\"EXIT POSITION\".global_position)
 "
 
+[sub_resource type="GDScript" id="GDScript_nc63g"]
+script/source = "extends Node2D
+
+var target_scene = \"\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	change_scenes()
+	pass
+
+
+func _on_area_2d_body_entered(body):
+	if not self.get_meta(\"Lock\"):
+		if body.has_method(\"player\"):
+			Global.transition_scene = true
+			target_scene = self.get_meta(\"Target\")
+			Global.paired_door = self.get_meta(\"Pairing\")
+	pass
+
+
+func _on_area_2d_body_exited(body):
+	if body.has_method(\"player\"):
+		Global.transition_scene = false
+	pass # Replace with function body.
+
+func change_scenes():
+	if Global.transition_scene && Global.paired_door == self.get_meta(\"Pairing\"):
+		#if Global.current_scene == (somehow get current scene file name)
+		var paired_door = self.get_meta(\"Pairing\")
+		Global.finish_changescenes(target_scene)
+
+func move_player_to_exit():
+	var players = get_tree().get_nodes_in_group(\"player\")
+	
+	if players.size() > 0:
+		for possible_player in players:
+			possible_player.set_global_position($\"EXIT POSITION\".global_position)
+"
+
 [node name="world" type="Node2D"]
 position = Vector2(-9, 59)
 
@@ -381,6 +426,17 @@ position = Vector2(906.5, 557.125)
 [node name="EXIT POSITION" parent="MCburger door" index="1"]
 position = Vector2(908, 608)
 
+[node name="Endgame door" parent="." instance=ExtResource("15_slhwj")]
+script = SubResource("GDScript_nc63g")
+metadata/Pairing = "END"
+metadata/Target = "end_scene"
+
+[node name="DOOR COLLISION" parent="Endgame door/Area2D" index="0"]
+position = Vector2(749.25, -6)
+
+[node name="EXIT POSITION" parent="Endgame door" index="1"]
+position = Vector2(749, 71)
+
 [connection signal="body_entered" from="Chingy_enter" to="." method="_on_chingy_enter_body_entered"]
 [connection signal="body_exited" from="Chingy_enter" to="." method="_on_chingy_enter_body_exited"]
 [connection signal="body_entered" from="Test-apt-door/Area2D" to="Test-apt-door" method="_on_area_2d_body_entered"]
@@ -392,3 +448,4 @@ position = Vector2(908, 608)
 
 [editable path="gas-door"]
 [editable path="MCburger door"]
+[editable path="Endgame door"]
