@@ -106,15 +106,12 @@ position = Vector2(570, 465)
 [node name="wagecuck" parent="." instance=ExtResource("4_yp065")]
 position = Vector2(458, 239)
 
-[node name="Sprite2D" parent="wagecuck" index="0"]
-position = Vector2(2, -63)
-scale = Vector2(3.71875, 3.5625)
+[node name="TheHoodElderBlack" parent="wagecuck" index="0"]
+position = Vector2(-24, -49)
+scale = Vector2(2.125, 2.0625)
 
-[node name="Area2D" parent="wagecuck/Sprite2D" index="0"]
-position = Vector2(1.7479, -0.842105)
-
-[node name="CollisionShape2D" parent="wagecuck/Sprite2D/Area2D" index="0"]
-position = Vector2(-1.7479, 1.12281)
+[node name="CollisionShape2D" parent="wagecuck" index="1"]
+position = Vector2(-23.5, -49)
 
 [editable path="mcburger door"]
 [editable path="wagecuck"]

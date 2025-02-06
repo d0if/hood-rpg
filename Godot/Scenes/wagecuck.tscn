@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dq44lx5m3pqpy" path="res://Art/npc characters/wagecuck.png" id="1_fnd0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdjwb"]
-size = Vector2(10, 22)
+size = Vector2(23, 46)
 
 [node name="wagecuck" type="CharacterBody2D"]
 position = Vector2(40, 41)
